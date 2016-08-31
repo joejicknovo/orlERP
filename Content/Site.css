@@ -27,7 +27,7 @@ a:hover{
     white-space: normal;
 }
 .pageHeader {
-    background-color: #ED1806;
+    background-color: #000;
     height: 76px;
 }
 .container {
@@ -76,11 +76,11 @@ ul.nav li.zParentHighLight a,ul.nav li.zChildHighLight a{
 }
 
 ul.nav li.zParentHighLight{
-	background-image: linear-gradient(to bottom, #F11716 0px, #CA1F14 100%);
+	background-image: linear-gradient(to bottom, #5D7BB3 0px, #526D9E 100%);
 }
 
 ul.nav li.zChildHighLight{
-	background-image: linear-gradient(to bottom, #F11716 0px, #CA1F14 100%);
+	background-image: linear-gradient(to bottom, #5D7BB3 0px, #526D9E 100%);
 }
 
 /*zPanel Table*/
