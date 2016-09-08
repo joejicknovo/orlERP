@@ -1,4 +1,4 @@
- //jquery objects events:
+  //jquery objects events:
 $(document).ready(function(){
     displayAppProfile();
    

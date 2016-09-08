@@ -1,0 +1,7 @@
+CREATE TYPE TestTable1_tt AS TABLE(
+column_id	INT	NULL
+,column2	DECIMAL(10)	NULL
+,column3	NVARCHAR(200)	NULL
+,column4	VARCHAR(100)	NULL
+,column5	VARCHAR(100)	NULL
+,column6	VARCHAR(82)	NULL)
