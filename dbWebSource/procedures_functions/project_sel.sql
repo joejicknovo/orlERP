@@ -1,7 +1,7 @@
 
-create PROCEDURE [dbo].[project_sel]
+CREATE PROCEDURE [dbo].[project_sel]
 (
-   @project_id INT
+   @project_id INT= NULL
 )
 AS
 BEGIN
@@ -9,7 +9,7 @@ BEGIN
 
 	SET @stmt = 'SELECT * FROM dbo.project';
 
-	IF @project_id <> 0 
+	IF @project_id IS NOT NULL
 		SET @stmt = @stmt + ' WHERE project_id='+ @project_id;
 	
 	

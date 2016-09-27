@@ -1,5 +1,5 @@
 
-CREATE PROCEDURE [dbo].[project_upd]
+create PROCEDURE [dbo].[project_upd]
 (
     @tt    project_tt READONLY
    ,@user_id int
