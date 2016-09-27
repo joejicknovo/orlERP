@@ -42,10 +42,10 @@ function displayRecords(){
         
 	    ]
 	    ,onComplete:function(){
-	          $("select[name='project_site_id']").dataBind("project_site");
-	          $("select[name='manager_id']").dataBind("employee");
-	          $("select[name='supervisor_id']").dataBind("employee");
-	          $("select[name='status_id']").dataBind("status");
+	          $("select[name='site_id']").dataBind("projectSite");
+	          $("select[name='manager_id']").dataBind("manager");
+	          $("select[name='supervisor_id']").dataBind("supervisor");
+	          $("select[name='status_id']").dataBind("project_status_filter");
 	    }
     });    
 }
@@ -56,4 +56,4 @@ function displayRecords(){
                         displayRecords();
                       }
     });      
-});*/       
+});*/          
