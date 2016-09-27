@@ -13,10 +13,7 @@ BEGIN
 			,quantity				= b.quantity
 			,unit_of_measure_id		= b.unit_of_measure_id
 			,unit_price				= b.unit_price
-			,warehouse_id			= b.warehouse_id
-			,rack_id				= b.rack_id
-			,tag_no					= b.tag_no
-			,expiration_date		= b.expiration_date
+			,amount					= b.amount
             ,updated_by				= @user_id
             ,updated_date			= GETDATE()
      FROM dbo.receiving_item_detail a INNER JOIN @tt b
@@ -27,10 +24,7 @@ BEGIN
 			OR	isnull(a.quantity,0)			<> isnull(b.quantity,0) 
 			OR	isnull(a.unit_of_measure_id,0)	<> isnull(b.unit_of_measure_id,0)
 			OR	isnull(a.unit_price,0)			<> isnull(b.unit_price,0)
-			OR	isnull(a.warehouse_id,0)		<> isnull(b.warehouse_id,0)
-			OR	isnull(a.rack_id,0)				<> isnull(b.rack_id,0)
-			OR	isnull(a.tag_no,'')				<> isnull(b.tag_no,'')
-			OR	isnull(a.expiration_date,'')	<> isnull(b.expiration_date,'')
+			OR	isnull(a.amount,0)				<> isnull(b.amount,0)
 	   )
 
 -- Insert Process
@@ -41,10 +35,7 @@ BEGIN
 		,quantity  
 		,unit_of_measure_id
 		,unit_price
-		,warehouse_id
-		,rack_id
-		,tag_no
-		,expiration_date
+		,amount
 		,created_by
         ,created_date
         )
@@ -54,10 +45,7 @@ BEGIN
 	   ,quantity  
 	   ,unit_of_measure_id
 	   ,unit_price
-	   ,warehouse_id
-	   ,rack_id
-	   ,tag_no
-	   ,expiration_date
+	   ,amount
 	   ,@user_id
        ,GETDATE()
     FROM @tt
