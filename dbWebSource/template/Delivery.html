@@ -1,0 +1,49 @@
+<link href="/content/bootstrap-datepicker.min.css" rel="stylesheet">
+<style>
+    #grid{
+    width: 100%;
+}
+.zGrid .item .title {
+}
+.zGrid .zHeaders .zSort {
+}
+.zRows {
+    height: 100%;
+}
+.moneyGridRightAlign input{
+    text-align:right;
+}
+.totalLabel {
+    width:325px;
+    text-align:left;
+    padding-left:30px;
+    background-color:#42454A;
+    color:#FFF;
+}
+.amountFormat {
+    width:100px;
+    text-align:right;
+    padding-right:5px;
+    background-color:#42454A;
+    color:#FFF;
+}
+</style>
+<div class="col-xs-12">    
+    <form method="post" id="frm">
+    <div class="zPanel">
+            <div id="grid" class="zGrid"></div>    
+        <div class="buttonGroup">
+            <button type="button" class="btn btn-primary btn-sm" id="btnSave">
+            	<span class="glyphicon glyphicon-floppy-disk"></span> Save
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" id="btnInactive">
+            	<span class="glyphicon glyphicon-ban-circle"></span> Inactive
+            </button>
+        </div>
+    </div>
+    </form>
+</div>
+
+<script src="/Scripts/bootstrap-datepicker.min.js"></script>
+<script src="/Scripts/handlebars-v3.0.0.js"></script>
+
