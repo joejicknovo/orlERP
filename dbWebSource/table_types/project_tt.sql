@@ -7,4 +7,4 @@ project_id	INT	NULL
 ,target_end_date	DATETIME	NULL
 ,manager_id	INT	NULL
 ,supervisor_id	INT	NULL
-,status_id	CHAR(1)	NULL)
+,status_id	INT	NULL)
