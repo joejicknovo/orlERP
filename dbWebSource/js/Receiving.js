@@ -59,12 +59,12 @@ $("#btnSave").click(function () {
     });
     
 });
-    
+
 function displayRecords(){   
     var cb = bs({name:"cbFilter1",type:"checkbox"});
          $("#grid").dataBind({
 	     url            : execURL + "receiving_item_sel"
-	    ,width          : 660
+	    ,width          : 615
 	    ,height         : $(document).height() - 250
 	    //,selectorType   : "checkbox"
         ,blankRowsLimit:5
@@ -80,10 +80,8 @@ function displayRecords(){
         		,{text  : "Delivered By"    , name  : "delivered_by"        , type  : "input"       , width : 150       , style : "text-align:left;"}
         		,{text  : "remark"          , name  : "remark"              , type  : "input"       , width : 100       , style : "text-align:left;"}
         		,{text  : "Status"          , name  : "status_id"           , type  : "select"      , width : 100      , style : "text-align:left;"}
-        		,{ text:"Add"      , width:40     , style:"text-align:center;" 
-        		    ,onRender : function(d){ return (d !== null ? "<a href='javascript:void(0);'onclick='receivingDetail(" + svn(d,"receiving_item_id") +");'  ><span class='glyphicon glyphicon-plus' style='font-size:12pt;' ></span> </a>" : ""); }}
-        		,{ text:"Edit"      , width:40     , style:"text-align:center;" 
-        		    ,onRender : function(d){ return (d !== null ? "<a href='javascript:void(0);'onclick='receivingDetail(" + svn(d,"receiving_item_id") +");'  ><span class='glyphicon glyphicon-pencil' style='font-size:12pt;' ></span> </a>" : ""); }}
+        		,{ text:"Detail"      , width:40     , style:"text-align:center;" 
+        		    ,onRender : function(d){ return (d !== null ? "<a href='javascript:void(0);'onclick='receivingDetail(" + svn(d,"receiving_item_id") +");'  ><span class='glyphicon glyphicon-list' style='font-size:12pt;' ></span> </a>" : ""); }}
         		,{ text:"View"      , width:40     , style:"text-align:center;" 
         		    ,onRender : function(d){ return (d !== null ? "<a href='javascript:void(0);'onclick='receivingDetail(" + svn(d,"receiving_item_id") +");'  ><span class='glyphicon glyphicon-list-alt' style='font-size:12pt;' ></span> </a>" : ""); }}
         		,{ text:"Print"      , width:40     , style:"text-align:center;" 
@@ -98,37 +96,52 @@ function displayRecords(){
 }
 
 function displayDetail(id){   
+    var sumObject = {};
     var cb = bs({name:"cbFilter2",type:"checkbox",style:"margin-top: 2px;"});
     $("#" + tblName).dataBind({
          url   : procURL + "receiving_item_detail_sel @receiving_item_id=" + id 
-        ,width          : 1100
+        ,width          : 600
 	    ,height         : 400
-	    ,blankRowsLimit:5
-        ,isPaging : false
+	    ,blankRowsLimit : 5
+        ,isPaging       : false
+        ,features: [{
+            ftype: 'summary'
+        }]
         ,dataRows       :[
     		 { text: cb             , width:40  , style:"text-align:left;" 
     		     ,onRender : function(d){ 
+    		                    sumObject = d;
                                 return  bs({name:"receiving_item_detail_id",type:"hidden",value:svn (d,"receiving_item_detail_id")})  
-                                        + bs({name:"receiving_item_id",type:"hidden",value:svn (d,"receiving_item_id")}); 
+                                        + bs({name:"receiving_item_id",type:"hidden",value:svn (d,"receiving_item_id")});
                                         /*+ bs({name:"cb",type:"checkbox",checked :(d.receiving_item_id!==""?true:false)});*/
-                            }            
-
+                            }
     		 }	 
-    		,{ text:"Item"          , width:200 , style:"text-align:left;"      ,type:"select"    ,name:"item_id" }	 
-    		,{ text:"Quantity"      , width:70 , style:"text-align:right;"     ,type:"input"     ,name:"quantity" }	 
-    		,{ text:"UoM"           , width:70  , style:"text-align:left;"      ,type:"select"    ,name:"unit_of_measure_id" }	 	 
-    		,{ text:"Unit Price"    , width:100  , style:"text-align:right;"     ,type:"input"     ,name:"unit_price" }	 	 
-    		,{ text:"Warehouse"     , width:200  , style:"text-align:left;"      ,type:"select"    ,name:"warehouse_id" }	 	 
-    		,{ text:"Rack"          , width:100  , style:"text-align:left;"      ,type:"select"    ,name:"rack_id" }	 	 
-    		,{ text:"Tag No."       , width:100  , style:"text-align:left;"      ,type:"input"     ,name:"tag_no" }	 	 
-    		,{ text:"Exp. Date"     , width:100  , style:"text-align:left;"      ,type:"input"     ,name:"expiration_date" }	 	 
-    		,{ text:"Delete?"       , width:100  , style:"text-align:left;"      ,type:"yesno"     ,name:"is_delete" }	 	 
+    		,{ text:"Item"          , width:200     , style:"text-align:left;"      ,type:"select"    ,name:"item_id"           , summaryType: '' }	 
+    		,{ text:"Quantity"      , width:70      , style:"text-align:right;"     ,type:"input"     ,name:"quantity"          , summaryType: 'sum' }	 
+    		,{ text:"UoM"           , width:70      , style:"text-align:left;"      ,type:"select"    ,name:"unit_of_measure_id", summaryType: '' }	 	 
+    		,{ text:"Unit Price"    , width:100     , style:"text-align:right;"     ,type:"input"     ,name:"unit_price"        , summaryType: 'sum' }
+    		,{ text:"Amount"        , width:100     , style:"text-align:right;"     ,type:"input"     ,name:"amount"            , summaryType: 'sum' }
  	    ]
        ,onComplete : function(){
             setToNullIfChecked(id);
             $("#cbFilter2").setCheckEvent("#" + tblName + " input[name='cb']");
+            $("select[name='unit_of_measure_id']").dataBind("unit_of_measure");
+            $(document).ready(function () {
+                $('#table .zRow #quantity, #unit_price').on('change', function() {
+                    $('#table .zRow').each(function() {
+                        var qty = $(this).find('input#quantity').val();
+                        var rate = $(this).find('input#unit_price').val();
+                        var amt = (qty * rate);
+                        $(this).find('input#amount').val(amt === 0 ? '' : amt);
+                    }); //END .each
+                    return false;
+                }); // END click 
+            });
         }
-    });    
+    });  
+    setTimeout(function(){
+       console.log(sumObject);
+    },10);
 }
 
 function setToNullIfChecked(id){
@@ -148,4 +161,4 @@ function setToNullIfChecked(id){
                         displayRecords();
                       }
     });      
-});*/            
+});*/                  
