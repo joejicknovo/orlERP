@@ -44,17 +44,17 @@ function displayRecords(){
             	,{text  : "Gender"          , name  : "employee_gender"         , type  : "select"      , width : 75       , style : "text-align:left;"}
             	,{text  : "Birth Date"                                                                  , width : 100       , style : "text-align:left;"
         		    , onRender      : function(d){
-        		            return wrapSD + bs({name:"employee_birth_date",value: svn(d,"employee_birth_date").toDateFormat()}) + wrapED;
+        		            return wrapSD + bs({name:"employee_birth_date",value: svn(d,"employee_birth_date").toDateFormat() ,style: "width:100%;"}) + wrapED;
         		    }
         		}
         		,{text  : "Hired Date"                                                                  , width : 100       , style : "text-align:left;"
         		    , onRender      : function(d){
-        		            return wrapSD + bs({name:"date_hired",value: svn(d,"date_hired").toDateFormat()}) + wrapED;
+        		            return wrapSD + bs({name:"date_hired",value: svn(d,"date_hired").toDateFormat() ,style: "width:100%;"}) + wrapED;
         		    }
         		}
         		,{text  : "Termination"                                                                 , width : 100       , style : "text-align:left;"
         		    , onRender      : function(d){
-        		            return wrapSD + bs({name:"termination_date",value: svn(d,"termination_date").toDateFormat()}) + wrapED;
+        		            return wrapSD + bs({name:"termination_date",value: svn(d,"termination_date").toDateFormat() ,style: "width:100%;"}) + wrapED;
         		    }
         		}
         	    ,{text  : "Position"        , name  : "position_id"             , type  : "select"      , width : 150       , style : "text-align:left;"}
@@ -66,7 +66,7 @@ function displayRecords(){
 	    ,onComplete:function(){
 	            zsi.initDatePicker();
 	            $("#grid").find("select[name='employee_gender']").fillSelect({data: genderTypes});
-	            $("select[name='position_id']").dataBind("status_position_filter"); 
+	            $("select[name='position_id']").dataBind("position"); 
 	            $("select[name='user_id']").dataBind("users"); 
 	            $("select[name='status_id']").dataBind("employment_status_filter");
 	    }
@@ -79,4 +79,4 @@ function displayRecords(){
                         displayRecords();
                       }
     });      
-});*/                
+});*/                  

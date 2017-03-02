@@ -1,0 +1,48 @@
+<script src="/Scripts/linq.min.js"></script>
+<style>
+    #grid{
+        width: 100%;
+    }
+    #grid a {
+        text-decoration: underline;
+        color: #0B22D4;
+    }
+    .zGrid .item .title {
+    }
+    .zGrid .zHeaders .zSort {
+    }
+    .zRows {
+        height: 100%;
+    }
+    .modal-lg {
+        width: 60% !important;
+    }
+    .message {
+        color: red;
+        font-weight: bold;
+        padding-left: 20px;
+    }
+</style>
+<div class="col-xs-12">    
+    <form method="post" id="frm">
+    <div class="zPanel">
+                
+        <div class="buttonGroup">
+            <button type="button" class="btn btn-primary btn-sm" id="btnNew">
+            	<span class="glyphicon glyphicon-plus"></span> New
+            </button>
+            
+            <!--<button type="button" class="btn btn-primary btn-sm" id="btnInactive">
+            	<span class="glyphicon glyphicon-ban-circle"></span> Inactive
+            </button>-->
+            <button type="button" class="btn btn-primary btn-sm" id="btnDelete">
+            	<span class="glyphicon glyphicon-trash"></span> Delete
+            </button> 
+        </div>
+        <div id="grid" class="zGrid"></div>
+    </div>
+    </form>
+</div>
+
+<script src="/Scripts/handlebars-v3.0.0.js"></script>
+

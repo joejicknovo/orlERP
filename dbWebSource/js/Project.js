@@ -31,7 +31,11 @@ function displayRecords(){
                                                     +  (d !==null ? bs({name:"cb",type:"checkbox"}) : "" );
                             }
             }	 
-        		,{text  : "Code "           , name  : "project_code"          , type  : "input"       , width : 100       , style : "text-align:left;"}
+        		,{text  : "Code"            , name  : "project_code"         , type  : "input"       , width : 100       , style : "text-align:left;"
+        		    ,onRender :  function(d){ 
+                		                   return    svn (d,"project_code");
+                            }
+        		}
         		,{text  : "Name"            , name  : "project_name"          , type  : "input"       , width : 200       , style : "text-align:left;"}
         		,{text  : "Site"            , name  : "site_id"               , type  : "select"      , width : 200       , style : "text-align:left;"}
         		,{text  : "Start Date"      , name  : "start_date"            , type  : "input"       , width : 100       , style : "text-align:left;"}
@@ -56,4 +60,4 @@ function displayRecords(){
                         displayRecords();
                       }
     });      
-});*/          
+});*/            

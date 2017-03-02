@@ -18,7 +18,7 @@ $("#btnSave").click(function () {
     
 });
     
-function displayRecords(){   
+function displayRecords(){  
     var cb = bs({name:"cbFilter1",type:"checkbox"});
          $("#grid").dataBind({
 	     url            : execURL + "warehouse_rack_sel"
@@ -28,15 +28,20 @@ function displayRecords(){
         ,blankRowsLimit:5
         ,isPaging : false
         ,dataRows : [
-                 {text  : cb                                                , width : 25        , style : "text-align:left;"       
-        		    , onRender      :  function(d){ 
+                 {text  : cb                , width : 25        , style : "text-align:left;"       
+        		    ,onRender :  function(d){ 
                 		                   return     bs({name:"warehouse_rack_id", value: svn (d,"warehouse_rack_id"), type:"hidden"})
                 		                           +  (d !==null ? bs({name:"cb",type:"checkbox"}) : "" );
                             }
-            }	 
-        		,{text  : "Code"            , name  : "warehouse_rack_code"        , type  : "input"       , width : 100       , style : "text-align:left;"}
+                }	 
+        		,{text  : "Code"            , name  : "warehouse_rack_code"        , type  : "input"       , width : 100       , style : "text-align:left;"
+        		    ,onRender :  function(d){ 
+                		                   return    svn (d,"warehouse_rack_code");
+                            }
+        		    
+        		}
         		,{text  : "Name"            , name  : "warehouse_rack_name"        , type  : "input"       , width : 300       , style : "text-align:left;"}
-        		,{text  : "Active?"         , name  : "is_active"                   , type  : "yesno"       , width : 100       , style : "text-align:left;" , defaultValue:"Y" }
+        		,{text  : "Active?"         , name  : "is_active"                  , type  : "yesno"       , width : 100       , style : "text-align:left;" , defaultValue:"Y" }
         
 	    ]
     });    
@@ -48,4 +53,4 @@ function displayRecords(){
                         displayRecords();
                       }
     });      
-});*/      
+});*/         

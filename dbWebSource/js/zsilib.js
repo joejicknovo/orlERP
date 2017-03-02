@@ -1600,7 +1600,7 @@ var  ud='undefined'
                     $.each(arrRight,function(){
                         info[this.name]= (this.value ===""? null: this.value);
                     });
-                    json.push(info);
+                    if(Object.keys(info).length > 0 ) json.push(info);
                 });
     
                 //check error
@@ -2508,4 +2508,4 @@ $(document).ready(function(){
     zsi.__initFormAdjust();
     zsi.initInputTypesAndFormats();
 });
-                                                             
+                                                              

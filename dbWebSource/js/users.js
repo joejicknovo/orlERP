@@ -37,7 +37,7 @@ function setSearch(){
     new zsi.search({
         tableCode: "adm-0002"
         ,colNames : ["logon"] 
-        ,displayNames : ["Corplear Logon"]  
+        ,displayNames : ["Logon"]  
         ,searchColumn :"logon"
         ,input:"input[name=logon_name_filter]"
         ,url : execURL + "searchData"
@@ -69,7 +69,7 @@ $("#btnSave").click(function () {
     
     $("#frm").jsonSubmit({
              procedure  : "users_upd"
-             ,optionalItems: ["role_id","is_active"]
+             ,optionalItems: ["is_active"]
             ,onComplete : function (data) {
                  if(data.isSuccess===true) zsi.form.showAlert("alert");
                  displayRecords( $("#logon_id_filter").val());
@@ -163,7 +163,7 @@ function displayInactiveUsers(){
         ,width          : 551
 	    ,height         : 400
         ,dataRows       :[
-            { text:"Corplear logon "   , width:220    , style:"text-align:center;"   
+            { text:"logon "   , width:220    , style:"text-align:center;"   
                  ,onRender : function(d){
                                 return     bs({name:"user_id"       ,type:"hidden"  ,value: d.user_id})
                                          + bs({name:"logon"         ,type:"hidden"  ,value: d.logon}) 
@@ -215,12 +215,12 @@ function displayRecords(user_id){
                                 +"\");'  ><span class='glyphicon glyphicon-picture'></span> </a>";
                           }
     		}	 
-    		,{ text:"Username"          , width:120     , style:"text-align:center;"      ,type:"input"      ,name:"logon"        ,                                 }	 
+    		,{ text:"Logon"    , width:120     , style:"text-align:center;"      ,type:"input"      ,name:"logon"        ,                                 }	 
     		,{ text:"Last Name"         , width:90      , style:"text-align:left;"        ,type:"input"      ,name:"last_name"    ,sortColNo:2                      }	 	 
     		,{ text:"First Name"        , width:90      , style:"text-align:left;"        ,type:"input"      ,name:"first_name"   ,sortColNo:3                      }	 	 
     		,{ text:"M.I."              , width:40      , style:"text-align:left;"        ,type:"input"      ,name:"middle_ini"   ,sortColNo:4                      }	 
     		,{ text:"Requestor?"        , width:100     , style:"text-align:right;"       ,type:"yesno"      ,name:"is_requestor" ,defaultValue:"Y"   , sortColNo:5 }	 	 
-    		//,{ text:"Plant Id"          , width:120     , style:"text-align:center;"      ,type:"select"     ,name:"plant_id"     ,sortColNo:6                      }	 	 
+    		,{ text:"Plant Id"          , width:120     , style:"text-align:center;"      ,type:"select"     ,name:"plant_id"     ,sortColNo:6                      }	 	 
     		,{ text:"Role Id"           , width:100     , style:"text-align:left;"        ,type:"select"     ,name:"role_id"      ,                                 }	 	 
     		,{ text:"Position"          , width:125     , style:"text-align:center;"      ,type:"input"      ,name:"position"     ,                                 }	 	 
 		    ,{ text:"Contact No."       , width:120     , style:"text-align:center;"      ,type:"input"      ,name:"contact_nos"  ,                                 }	     		
@@ -233,18 +233,17 @@ function displayRecords(user_id){
 	    ]
 
          ,onComplete: function(){
-            $("select[name='role_id']").dataBind("role_filter");
             $("#cbFilter1").setCheckEvent("#grid input[name='cb']");
             
-            /*$("select[name='plant_id']").dataBind( "plants");
-            $("select[name='role_id']").dataBind({
-                url:  getOptionsURL("roles")
-                ,onComplete:function(){
-                    $("select[name='role_id']").change();
-                }
-            });*/
-            markUserMandatory();
-            $(".no-data input[name='logon']").checkValueExists({code:"adm-0002",colName:"logon"});
+             $("select[name='plant_id']").dataBind( "plants");
+                 $("select[name='role_id']").dataBind({
+                     url:  getOptionsURL("roles")
+                     ,onComplete:function(){
+                       $("select[name='role_id']").change();
+                     }
+                 });
+                 markUserMandatory();
+                 $(".no-data input[name='logon']").checkValueExists({code:"adm-0002",colName:"logon"});
      
         }
         /*
@@ -359,9 +358,10 @@ $("#btnDelete").click(function(){
     zsi.form.deleteData({
          code       : "adm-0002"
         ,onComplete : function(data){
+            console.log(data);
                         displayRecords("");
                       }
     });   
 
 }); 
-   
+    

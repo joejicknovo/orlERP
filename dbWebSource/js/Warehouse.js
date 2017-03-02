@@ -33,8 +33,12 @@ function displayRecords(){
                 		                   return     bs({name:"warehouse_id", value: svn (d,"warehouse_id"), type:"hidden"})
                 		                           +  (d !==null ? bs({name:"cb",type:"checkbox"}) : "" );
                             }
-            }	 
-        		,{text  : "Code"            , name  : "warehouse_code"                  , type  : "input"       , width : 100       , style : "text-align:left;"}
+                 }	 
+        		,{text  : "Code"            , name  : "warehouse_code"         , type  : "input"       , width : 100       , style : "text-align:left;"
+        		    ,onRender :  function(d){ 
+                		                   return    svn (d,"warehouse_code");
+                            }
+        		}
         		,{text  : "Name"            , name  : "warehouse_name"                  , type  : "input"       , width : 200       , style : "text-align:left;"}
         		,{text  : "Location"        , name  : "warehouse_location"              , type  : "input"       , width : 200       , style : "text-align:left;"}
         		,{text  : "Address"         , name  : "warehouse_address"               , type  : "input"       , width : 300       , style : "text-align:left;"}
@@ -55,4 +59,4 @@ function displayRecords(){
                         displayRecords();
                       }
     });      
-});*/         
+});*/          
