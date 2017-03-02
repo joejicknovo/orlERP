@@ -6,7 +6,7 @@ CREATE PROCEDURE [dbo].[select_options_sel]
 AS
 BEGIN
 	IF @code IS NULL 
-		select * from  select_options
+		SELECT * FROM  select_options ORDER BY [code]
 	ELSE
 		BEGIN				
 			DECLARE @stmt		VARCHAR(max);
@@ -35,10 +35,12 @@ BEGIN
 				SET @param2 =  replace(@param, ',' , ' AND ');
 				SET @stmt = @stmt + ' AND ' + @param2 ;
 			END
-   
+   		
 			IF @order <> ''
 				SET @stmt = @stmt + ' ORDER BY ' + @order;
-				--print @stmt
-			exec(@stmt);
+			
+			--PRINT @stmt
+			EXEC(@stmt);
 		END
  END;
+

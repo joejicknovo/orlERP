@@ -4,7 +4,7 @@ user_id	INT IDENTITY(1,1)	NOT NULL
 ,last_name	NVARCHAR(200)	NULL
 ,first_name	NVARCHAR(200)	NULL
 ,middle_ini	NVARCHAR(2)	NULL
-,password	NVARCHAR(100)	NULL
+,password	NVARCHAR(400)	NULL
 ,role_id	INT	NULL
 ,plant_id	INT	NULL
 ,is_active	VARCHAR(1)	NULL

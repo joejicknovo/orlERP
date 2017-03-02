@@ -1,4 +1,4 @@
-CREATE view users_v
+CREATE view [dbo].[users_v]
 
  as
 

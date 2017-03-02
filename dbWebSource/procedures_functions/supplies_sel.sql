@@ -1,4 +1,3 @@
-
 CREATE PROCEDURE [dbo].[supplies_sel]
 (
     @store_id  INT = null
@@ -14,7 +13,3 @@ BEGIN
 		SET @stmt = @stmt + ' WHERE store_id='+ CAST(@store_id AS VARCHAR(50));
    exec (@stmt);
 END
- 
-
-
-

@@ -1,5 +1,5 @@
 
-CREATE FUNCTION getUserId 
+CREATE FUNCTION [dbo].[getUserId] 
 (
 	@logon varchar(20)
 )

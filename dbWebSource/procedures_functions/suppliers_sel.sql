@@ -13,3 +13,4 @@ BEGIN
 		SET @stmt = @stmt + ' AND supplier_id='+ CAST(@supplier_id AS VARCHAR(50));
    exec (@stmt);
 end
+

@@ -1,5 +1,5 @@
 
-create PROCEDURE [dbo].[project_upd]
+CREATE PROCEDURE [dbo].[project_upd]
 (
     @tt    project_tt READONLY
    ,@user_id int
@@ -9,8 +9,7 @@ AS
 BEGIN
 -- Update Process
     UPDATE a 
-        SET  project_code		= b.project_code
-			,project_name		= b.project_name
+        SET  project_name		= b.project_name
 			,site_id			= b.site_id
 			,start_date			= b.start_date
 			,target_end_date	= b.target_end_date
@@ -22,8 +21,7 @@ BEGIN
      FROM dbo.project a INNER JOIN @tt b
         ON a.project_id = b.project_id 
        WHERE (
-				isnull(a.project_code,'')		<> isnull(b.project_code,'')   
-			OR	isnull(a.project_name,'')		<> isnull(b.project_name,'')   
+				isnull(a.project_name,'')		<> isnull(b.project_name,'')   
 			OR	isnull(a.site_id,0)				<> isnull(b.site_id,0)   
 			OR	isnull(a.start_date,'')			<> isnull(b.start_date,'')   
 			OR	isnull(a.target_end_date,'')	<> isnull(b.target_end_date,'')   
@@ -35,8 +33,7 @@ BEGIN
 -- Insert Process
 
     INSERT INTO project (
-         project_code		
-		,project_name	
+         project_name	
 		,site_id	
 		,start_date	
 		,target_end_date	
@@ -47,8 +44,7 @@ BEGIN
         ,created_date
         )
     SELECT 
-	    project_code	
-       ,project_name	
+	    project_name	
 	   ,site_id	
 	   ,start_date	
 	   ,target_end_date	
@@ -59,7 +55,22 @@ BEGIN
        ,GETDATE()
     FROM @tt
     WHERE project_id IS NULL
+
+	--Code generator
+    DECLARE @terminator INT = 1;
+	DECLARE @counter INT = (SELECT COUNT(project_id) FROM dbo.project WHERE project_code IS NULL);
+
+	WHILE @terminator <= @counter
+		BEGIN
+			UPDATE dbo.project
+			SET project_code = (SELECT 'PJ' + REPLICATE('0',4-LEN(RTRIM(project_id))) + RTRIM(project_id))
+			WHERE project_id = (SELECT TOP 1 project_id FROM dbo.project WHERE project_code IS NULL);
+
+			SET @terminator = @terminator + 1;
+		END
 END
+
+
 
 
 

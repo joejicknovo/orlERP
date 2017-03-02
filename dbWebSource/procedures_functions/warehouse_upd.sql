@@ -9,8 +9,7 @@ AS
 BEGIN
 -- Update Process
     UPDATE a 
-        SET  warehouse_code					= b.warehouse_code
-			,warehouse_name					= b.warehouse_name
+        SET  warehouse_name					= b.warehouse_name
 			,warehouse_location				= b.warehouse_location
 			,warehouse_address				= b.warehouse_address
 			,warehouse_contact_no			= b.warehouse_contact_no
@@ -21,8 +20,7 @@ BEGIN
 		FROM dbo.warehouse a INNER JOIN @tt b
         ON a.warehouse_id = b.warehouse_id 
 		WHERE (
-				isnull(a.warehouse_code,'')					<> isnull(b.warehouse_code,'')   
-			OR	isnull(a.warehouse_name,'')					<> isnull(b.warehouse_name,'')   
+				isnull(a.warehouse_name,'')					<> isnull(b.warehouse_name,'')   
 			OR	isnull(a.warehouse_location,'')				<> isnull(b.warehouse_location,'')   
 			OR	isnull(a.warehouse_address,'')				<> isnull(b.warehouse_address,'')   
 			OR	isnull(a.warehouse_contact_no,'')			<> isnull(b.warehouse_contact_no,'')   
@@ -33,8 +31,7 @@ BEGIN
 -- Insert Process
 
     INSERT INTO dbo.warehouse (
-         warehouse_code 
-		,warehouse_name
+         warehouse_name
 		,warehouse_location
 		,warehouse_address
 		,warehouse_contact_no
@@ -44,8 +41,7 @@ BEGIN
         ,created_date
         )
     SELECT 
-        warehouse_code 
-	   ,warehouse_name	
+        warehouse_name	
 	   ,warehouse_location
 	   ,warehouse_address
 	   ,warehouse_contact_no
@@ -55,7 +51,22 @@ BEGIN
        ,GETDATE()
     FROM @tt
     WHERE warehouse_id IS NULL;
+
+	--Code generator
+    DECLARE @terminator INT = 1;
+	DECLARE @counter INT = (SELECT COUNT(warehouse_id) FROM dbo.warehouse WHERE warehouse_code IS NULL);
+
+	WHILE @terminator <= @counter
+		BEGIN
+			UPDATE dbo.warehouse
+			SET warehouse_code = (SELECT 'WH' + REPLICATE('0',4-LEN(RTRIM(warehouse_id))) + RTRIM(warehouse_id))
+			WHERE warehouse_id = (SELECT TOP 1 warehouse_id FROM dbo.warehouse WHERE warehouse_code IS NULL);
+
+			SET @terminator = @terminator + 1;
+		END
 END
+
+
 
 
 

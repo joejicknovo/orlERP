@@ -1,8 +1,7 @@
-
 CREATE PROCEDURE [dbo].[roles_sel]
 (
-    @role_id  INT = null
-   ,@user_id  int = null
+   @user_id  int = null
+   ,@role_id  INT = null
 )
 AS
 BEGIN
@@ -11,4 +10,6 @@ BEGIN
   ELSE
       SELECT * FROM roles_v WHERE role_id = @role_id; 
 END
+
+
 

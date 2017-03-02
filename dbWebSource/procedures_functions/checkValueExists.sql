@@ -23,10 +23,3 @@ BEGIN
   SELECT @retval as isExists;
 
 END
-
-
-
-
- 
-
-

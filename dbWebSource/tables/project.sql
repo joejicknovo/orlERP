@@ -1,6 +1,6 @@
 CREATE TABLE project(
 project_id	INT IDENTITY(1,1)	NOT NULL
-,project_code	VARCHAR(10)	NOT NULL
+,project_code	VARCHAR(10)	NULL
 ,project_name	VARCHAR(300)	NOT NULL
 ,site_id	INT	NOT NULL
 ,start_date	DATETIME	NOT NULL

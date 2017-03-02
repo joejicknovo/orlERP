@@ -1,4 +1,4 @@
-CREATE VIEW dbo.pages_v
+CREATE VIEW [dbo].[pages_v]
 AS
 SELECT        dbo.pages.page_id, dbo.pages.page_name, dbo.pages.page_title, dbo.master_pages.master_page_id, dbo.master_pages.master_page_name
 FROM            dbo.pages INNER JOIN

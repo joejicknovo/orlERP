@@ -14,10 +14,12 @@ SET NOCOUNT ON
 	 SELECT * FROM dbo.purchase_order WHERE purchase_order_id = @purchase_order_id; 
   ELSE
       SELECT * FROM purchase_order
-	  ORDER BY purchase_order_id; 
+	  ORDER BY purchase_order_id DESC; 
 	
 END
  
+
+
 
 
 

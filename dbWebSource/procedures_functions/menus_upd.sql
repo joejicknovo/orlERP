@@ -46,3 +46,4 @@ AS
 	FROM @tt 
 	WHERE menu_id IS NULL
       AND menu_name IS NOT NULL;
+

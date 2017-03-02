@@ -1,7 +1,7 @@
 CREATE TABLE receiving_item_detail(
 receiving_item_detail_id	INT IDENTITY(1,1)	NOT NULL
 ,receiving_item_id	INT	NOT NULL
-,item_id	INT	NOT NULL
+,product_id	INT	NOT NULL
 ,quantity	DECIMAL(20)	NOT NULL
 ,unit_of_measure_id	INT	NOT NULL
 ,unit_price	DECIMAL(20)	NOT NULL

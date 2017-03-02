@@ -18,3 +18,4 @@ SET NOCOUNT ON
 	  ORDER BY warehouse_rack_name; 
 	
 END
+

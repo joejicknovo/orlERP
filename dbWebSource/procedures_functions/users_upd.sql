@@ -15,6 +15,7 @@ DECLARE @updated_count INT;
 	      ,last_name    = b.last_name
 		  ,first_name   = b.first_name
 		  ,middle_ini   = b.middle_ini
+		  ,password		= b.password
 		  ,plant_id     = b.plant_id
 		  ,role_id      = b.role_id
 		  ,position     = b.position
@@ -33,6 +34,7 @@ DECLARE @updated_count INT;
 		  OR isnull(a.first_name,'') <> isnull(b.first_name,'')
 		  OR isnull(a.middle_ini,'') <> isnull(b.middle_ini,'')
 		  OR isnull(a.middle_ini,'') <> isnull(b.middle_ini,'')
+		  OR isnull(a.password,'') <> isnull(b.password,'')
 		  OR isnull(a.plant_id,0) <> isnull(b.plant_id,0)
 		  OR isnull(a.role_id,0) <> isnull(b.role_id,0)
 		  OR isnull(a.is_requestor,'') <> isnull(b.is_requestor,'')
@@ -54,6 +56,7 @@ SET @updated_count = @@ROWCOUNT;
       ,last_name
 	  ,first_name
 	  ,middle_ini
+	  ,password
 	  ,plant_id
 	  ,role_id
 	  ,position
@@ -69,6 +72,7 @@ SET @updated_count = @@ROWCOUNT;
       ,last_name
 	  ,first_name
 	  ,middle_ini
+	  ,password
 	  ,plant_id
 	  ,role_id
 	  ,position
@@ -90,3 +94,4 @@ RETURN @updated_count;
 
 
 
+ 

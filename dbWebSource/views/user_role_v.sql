@@ -1,4 +1,4 @@
-CREATE VIEW dbo.user_role_v
+CREATE VIEW [dbo].[user_role_v]
 AS
 SELECT        
 	TOP (100) PERCENT 

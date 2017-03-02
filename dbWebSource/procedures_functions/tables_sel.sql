@@ -17,3 +17,4 @@ BEGIN
     set @stmt = @stmt + ' order by table_code'
 	exec(@stmt);
  END;
+

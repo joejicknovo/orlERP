@@ -1,6 +1,5 @@
 CREATE TYPE project_tt AS TABLE(
 project_id	INT	NULL
-,project_code	NVARCHAR(20)	NULL
 ,project_name	NVARCHAR(600)	NULL
 ,site_id	INT	NULL
 ,start_date	DATETIME	NULL
